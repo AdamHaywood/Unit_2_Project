@@ -18,8 +18,8 @@ FSJS project 2 - List Filter and Pagination
 ***/
 
 const studentList = document.querySelectorAll('.student-list li');
-
 const pageNumbers = Math.ceil(studentList.length/10);
+let pageRecords = 10;
 
 
 /*** 
@@ -38,21 +38,26 @@ const pageNumbers = Math.ceil(studentList.length/10);
 ***/
 
 showPage = (list, page) => {
-  for (i = 0; i < list.length; i ++) {
-  list[i].style.display = 'none';
-    if (Math.floor(i/studentList.length)) {
-      list[i].style.display = '';
-    }
-  }
+   let startIndex = (page * pageRecords) - pageRecords;
+   let endIndex = page * pageRecords;
+   for (i = 0; i < list.length; i ++) {
+      if (i >= startIndex && i < endIndex) {
+         list[i].style.display = 'block';
+      } else {
+         list[i].style.display = 'none';
+      }
+   }
 }
 
-showPage(studentList, pageNumbers);
+showPage(studentList, 1);
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
 
+appendPage = (pages) => {
 
+}
 
 
 
