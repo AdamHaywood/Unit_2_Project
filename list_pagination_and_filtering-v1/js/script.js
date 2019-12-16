@@ -69,8 +69,9 @@ appendPage = (pages) => {
       links.innerHTML = i;
       pageButtons.appendChild(links);   
       anchor = document.querySelector("a");
-      anchor.addEventListener('click', () => {
-         anchor.href = showPage(studentList, i)
+      anchor.href = "#";
+      anchor.addEventListener('click', (event) => {
+         event.target.href = event.target.showPage(studentList, i)
       });
    }
 }
