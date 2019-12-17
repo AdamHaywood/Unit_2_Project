@@ -71,8 +71,9 @@ const appendPage = (pages) => {
       links.addEventListener('click', () => {
          const pg = event.target.innerText;
          showPage(studentList, pg);
-         for (j = 1; j <= links.length; j ++) {
-            links[j].classList.remove('active');
+         const allLinks = document.getElementsByTagName("a");
+         for (j = 0; j < allLinks.length; j ++) {
+            allLinks[j].classList.remove('active');
          }
          event.target.className = 'active';
       });
