@@ -2,19 +2,12 @@
 Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
-   
-// Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
-
 
 /*** 
-   Add your global variables that store the DOM elements you will 
-   need to reference and/or manipulate. 
-   
-   But be mindful of which variables should be global and which 
-   should be locally scoped to one of the two main functions you're 
-   going to create. A good general rule of thumb is if the variable 
-   will only be used inside of a function, then it can be locally 
-   scoped to that function.
+   Here I define some of the global variables for my code
+   I need an HTML collection of all the students,
+   a number of pages to create,
+   and how many students to show on each page.
 ***/
 
 const studentList = document.querySelectorAll('.student-list li');
@@ -23,18 +16,10 @@ let pageRecords = 10;
 
 
 /*** 
-   Create the `showPage` function to hide all of the items in the 
-   list except for the ten you want to show.
-
-   Pro Tips: 
-     - Keep in mind that with a list of 54 students, the last page 
-       will only display four.
-     - Remember that the first student has an index of 0.
-     - Remember that a function `parameter` goes in the parens when 
-       you initially define the function, and it acts as a variable 
-       or a placeholder to represent the actual function `argument` 
-       that will be passed into the parens later when you call or 
-       "invoke" the function 
+   Now I need to create the function that will show a certain number
+   of students using the above defined consts. Within the function I'll
+   need to create an index to show the students necessary for each page
+   while hiding the rest.
 ***/
 
 const showPage = (list, page) => {
@@ -50,9 +35,13 @@ const showPage = (list, page) => {
 }
 
 showPage(studentList, 1);
+
 /*** 
-   Create the `appendPageLinks function` to generate, append, and add 
-   functionality to the pagination buttons.
+   Now that I've determined which grouping of students to show for the
+   specific page, the page links must be created. Creating the new div,
+   ul, li, and a elements below appending them to the correct place, and
+   adding functionality for each button through event listeners, and class
+   designation.
 ***/
 
 const appendPage = (pages) => {
@@ -68,6 +57,10 @@ const appendPage = (pages) => {
       let links = document.createElement("a");
       links.innerHTML = i;
       pageButtons.appendChild(links);
+
+      // the above is required to create the buttons on the page
+      // and the below adds the functionality and classes to the buttons
+
       links.addEventListener('click', () => {
          const pg = event.target.innerText;
          showPage(studentList, pg);
@@ -83,5 +76,3 @@ const appendPage = (pages) => {
 
 appendPage(numberOfPages);
 document.querySelector('a').className = 'active';
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
