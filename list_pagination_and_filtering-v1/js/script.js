@@ -37,7 +37,7 @@ let pageRecords = 10;
        "invoke" the function 
 ***/
 
-showPage = (list, page) => {
+const showPage = (list, page) => {
    let startIndex = (page * pageRecords) - pageRecords;
    let endIndex = page * pageRecords;
    for (i = 0; i < list.length; i ++) {
@@ -55,7 +55,7 @@ showPage(studentList, 1);
    functionality to the pagination buttons.
 ***/
 
-appendPage = (pages) => {
+const appendPage = (pages) => {
    let newDiv = document.createElement("div");
    newDiv.className = 'pagination';
    document.querySelector(".page").appendChild(newDiv);
@@ -67,16 +67,20 @@ appendPage = (pages) => {
       ul.appendChild(pageButtons);
       let links = document.createElement("a");
       links.innerHTML = i;
-      pageButtons.appendChild(links);   
-      anchor = document.querySelector("a");
-      anchor.href = "#";
-      anchor.addEventListener('click', (event) => {
-         event.target.href = event.target.showPage(studentList, i)
+      pageButtons.appendChild(links);
+      links.addEventListener('click', () => {
+         const pg = event.target.innerText;
+         showPage(studentList, pg);
+         for (j = 1; j <= links.length; j ++) {
+            links[j].classList.remove('active');
+         }
+         event.target.className = 'active';
       });
    }
+
 }
 
 appendPage(numberOfPages);
-
+document.querySelector('a').className = 'active';
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
